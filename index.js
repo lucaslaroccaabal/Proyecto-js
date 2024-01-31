@@ -7,7 +7,7 @@
 
 function comparator(lado) {
   //generador de nro random
-  let random = Math.floor(Math.random() * 2);
+  let random = Math.floor(Math.random() * 3);
 
   //comparacion si ambos son el mismo lado
   if (lado === random) {
@@ -43,10 +43,14 @@ function play(num1, num2, ronda) {
   }
   return play;
 }
-let jugando = prompt("Quieres jugar a los penales? (esc para salir)");
+alert("⚽TANDA DE PENALES🧤");
+let jugando = prompt("Quieres empezar a jugar? (esc para salir)");
 while (jugando !== "esc" && jugando !== "ESC") {
   //selección equipos
-  const equipo1 = prompt("Como se llama tu equipo?");
+  let equipo1 = prompt("Como se llama tu equipo?");
+  while (equipo1 === "racing" || equipo1 === "Racing" || equipo1 === "RACING") {
+    equipo1 = prompt("Daaaale elegite a uno mas grande que rasin!🤏🤏");
+  }
   const equipo2 = prompt("Como se llama el equipo rival?");
   let count1 = 0;
   let count2 = 0;
@@ -71,14 +75,16 @@ while (jugando !== "esc" && jugando !== "ESC") {
         (i - 1) +
         " \n Va a patear " +
         equipo1 +
-        ", Preparado/a?"
+        ", Preparado/a?👟⚽"
     );
     let eleccion = parseInt(
-      prompt(" Hacia donde patear? \n izquierda: 0 \n derecha: 1")
+      prompt(" Hacia donde patear? \n izquierda: 0 \n medio: 1 \n derecha:2")
     );
-    while (eleccion !== 0 && eleccion !== 1) {
+    while (eleccion !== 0 && eleccion !== 1 && eleccion !== 2) {
       eleccion = parseInt(
-        prompt("Esa no es una opción valida!!! \n izquierda: 0 \n derecha: 1")
+        prompt(
+          "Esa no es una opción valida!!! \n izquierda: 0 \n medio: 1 \n derecha: 2"
+        )
       );
     }
     //verificacion de gol
@@ -105,14 +111,16 @@ while (jugando !== "esc" && jugando !== "ESC") {
         (i - 1) +
         " \n Va a patear " +
         equipo2 +
-        ", Preparado/a?"
+        ", Preparado/a?🧤⚽"
     );
     eleccion = parseInt(
-      prompt(" Hacia donde lanzarse? \n izquierda: 0 \n derecha: 1")
+      prompt(" Hacia donde lanzarse? \n izquierda: 0 \n medio: 1 \n derecha: 2")
     );
-    while (eleccion !== 0 && eleccion !== 1) {
+    while (eleccion !== 0 && eleccion !== 1 && eleccion !== 2) {
       eleccion = parseInt(
-        prompt("Esa no es una opción valida!!! \n izquierda: 0 \n derecha: 1")
+        prompt(
+          "Esa no es una opción valida!!! \n izquierda: 0 \n medio: 1 \n derecha: 2"
+        )
       );
     }
     //verificacion de atajada
