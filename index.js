@@ -17,6 +17,32 @@ function comparator(lado) {
   }
   return adentro;
 }
+function play(num1, num2, ronda) {
+  let play = true;
+  switch (ronda) {
+    case 1:
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+    case 4:
+      if (Math.abs(num1 - num2) >= 3) {
+        play = false;
+      }
+      break;
+    case 5:
+      if (Math.abs(num1 - num2) >= 2) {
+        play = false;
+      }
+      break;
+    default:
+      if (Math.abs(num1 - num2) >= 1) {
+        play = false;
+      }
+  }
+  return play;
+}
 let jugando = prompt("Quieres jugar a los penales? (esc para salir)");
 while (jugando !== "esc" && jugando !== "ESC") {
   //selección equipos
@@ -24,8 +50,11 @@ while (jugando !== "esc" && jugando !== "ESC") {
   const equipo2 = prompt("Como se llama el equipo rival?");
   let count1 = 0;
   let count2 = 0;
-  for (let i = 1; i === i; i++) {
-    console.log("i = " + i);
+  let i = 1;
+
+  //proceso de patear
+  console.log(play(count1, count2, i));
+  while (play(count1, count2, i)) {
     //patear
     alert(
       "-" +
@@ -60,16 +89,6 @@ while (jugando !== "esc" && jugando !== "ESC") {
       alert("GOLAZOOOO" + "⚽⚽⚽⚽");
       count1 = count1 + 1;
     }
-    console.log("goles1: " + count1);
-    //verificación de break
-    if (i >= 4 && count1 - count2 >= 3) {
-      alert("GANOOOOOOOOOOO " + equipo1 + "✨✨✨✨");
-      break;
-    } else if (i === 5 && count1 - count2 >= 2) {
-      alert("GANOOOOOOOOOOO " + equipo1 + "✨✨✨✨");
-      break;
-    }
-
     //atajar
     alert(
       "-" +
@@ -104,21 +123,18 @@ while (jugando !== "esc" && jugando !== "ESC") {
       alert("gol del rival!" + "😬😬😬😬");
       count2 = count2 + 1;
     }
-    console.log("goles2: " + count2);
-    if (i >= 3 && count2 - count1 >= 3) {
-      alert("GANOOOOOOOOOOO " + equipo2 + "💀💀💀💀");
-      break;
-    } else if (i >= 4 && count2 - count1 >= 2) {
-      alert("GANOOOOOOOOOOO " + equipo2 + "💀💀💀💀");
-      break;
-    } else if (i >= 5 && count2 - count1 >= 1) {
-      alert("GANOOOOOOOOOOO " + equipo2 + "💀💀💀💀");
-      break;
-    } else if (i >= 5 && count1 - count2 >= 1) {
-      alert("GANOOOOOOOOOOO " + equipo1 + "✨✨✨✨");
-      break;
-    }
+    i++;
+    console.log(play(count1, count2, i));
+    console.log("cuenta1: " + count1);
+    console.log("cuenta1: " + count2);
+    console.log("ronda " + i);
   }
-
+  if (count1 > count2) {
+    alert("GANOOOOOOOOO " + equipo1 + ", Felicitaciones!!!" + "✨✨✨");
+  } else {
+    alert(
+      "GANOOOOOOOOO " + equipo2 + ", no pasa nada, sera la proxima" + "😔😔😔"
+    );
+  }
   jugando = prompt("Quieres volver a jugar?(esc para salir)");
 }
