@@ -49,7 +49,7 @@ while (jugando !== "esc" && jugando !== "ESC") {
   //selección equipos
   let equipo1 = prompt("Como se llama tu equipo?");
   while (equipo1 === "racing" || equipo1 === "Racing" || equipo1 === "RACING") {
-    equipo1 = prompt("Daaaale elegite a uno mas grande que rasin!🤏🤏");
+    equipo1 = prompt("Daaaale elegite a uno mas grande!🤏🤏");
   }
   const equipo2 = prompt("Como se llama el equipo rival?");
   let count1 = 0;
