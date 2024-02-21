@@ -5,7 +5,7 @@
 //sistema de aleatoriedad de arquero
 //sistema while que detecte si seguis "vivo"
 
-function comparator(lado) {
+const comparator = (lado) => {
   //generador de nro random
   let random = Math.floor(Math.random() * 3);
 
@@ -16,8 +16,8 @@ function comparator(lado) {
     adentro = 1;
   }
   return adentro;
-}
-function play(num1, num2, ronda) {
+};
+const play = (num1, num2, ronda) => {
   let play = true;
   switch (ronda) {
     case 1:
@@ -42,39 +42,45 @@ function play(num1, num2, ronda) {
       }
   }
   return play;
+};
+class Equipo {
+  constructor(nombre, goles, diferencia) {
+    this.nombre = nombre;
+    this.goles = goles;
+    this.diferencia = diferencia;
+  }
+  gol() {
+    this.goles++;
+  }
 }
 alert("⚽TANDA DE PENALES🧤");
 let jugando = prompt("Quieres empezar a jugar? (esc para salir)");
-while (jugando !== "esc" && jugando !== "ESC") {
+while (jugando.toLowerCase() !== "esc") {
   //selección equipos
-  let equipo1 = prompt("Como se llama tu equipo?");
-  while (equipo1 === "racing" || equipo1 === "Racing" || equipo1 === "RACING") {
-    equipo1 = prompt("Daaaale elegite a uno mas grande!🤏🤏");
-  }
-  const equipo2 = prompt("Como se llama el equipo rival?");
-  let count1 = 0;
-  let count2 = 0;
+  const nomEquipo1 = prompt("Como se llama tu equipo?");
+  const Equipo1 = new Equipo(nomEquipo1, 0, 0);
+  const nomEquipo2 = prompt("Como se llama el equipo rival?");
+  const Equipo2 = new Equipo(nomEquipo2, 0, 0);
   let i = 1;
 
-  //proceso de patear
-  console.log(play(count1, count2, i));
-  while (play(count1, count2, i)) {
+  //proceso de penales
+  while (play(Equipo1.goles, Equipo2.goles, i)) {
     //patear
     alert(
       "-" +
-        equipo1 +
+        Equipo1.nombre +
         ": " +
-        count1 +
+        Equipo1.goles +
         "/" +
         (i - 1) +
         "\n-" +
-        equipo2 +
+        Equipo2.nombre +
         ": " +
-        count2 +
+        Equipo2.goles +
         "/" +
         (i - 1) +
         " \n Va a patear " +
-        equipo1 +
+        Equipo1.nombre +
         ", Preparado/a?👟⚽"
     );
     let eleccion = parseInt(
@@ -93,24 +99,24 @@ while (jugando !== "esc" && jugando !== "ESC") {
       alert("El Arquero La atajo!!!" + "😬😬😬😬");
     } else {
       alert("GOLAZOOOO" + "⚽⚽⚽⚽");
-      count1 = count1 + 1;
+      Equipo1.gol();
     }
     //atajar
     alert(
       "-" +
-        equipo1 +
+        Equipo1.nombre +
         ": " +
-        count1 +
+        Equipo1.goles +
         "/" +
         i +
         "\n-" +
-        equipo2 +
+        Equipo2.nombre +
         ": " +
-        count2 +
+        Equipo2.goles +
         "/" +
         (i - 1) +
         " \n Va a patear " +
-        equipo2 +
+        Equipo2.nombre +
         ", Preparado/a?🧤⚽"
     );
     eleccion = parseInt(
@@ -129,19 +135,18 @@ while (jugando !== "esc" && jugando !== "ESC") {
       alert("PERO QUE ATAJADON" + "🧤🧤🧤🧤");
     } else {
       alert("gol del rival!" + "😬😬😬😬");
-      count2 = count2 + 1;
+      Equipo2.gol();
     }
     i++;
-    console.log(play(count1, count2, i));
-    console.log("cuenta1: " + count1);
-    console.log("cuenta1: " + count2);
-    console.log("ronda " + i);
   }
-  if (count1 > count2) {
-    alert("GANOOOOOOOOO " + equipo1 + ", Felicitaciones!!!" + "✨✨✨");
+  if (Equipo1.goles > Equipo2.goles) {
+    alert("GANOOOOOOOOO " + Equipo1.nombre + ", Felicitaciones!!!" + "✨✨✨");
   } else {
     alert(
-      "GANOOOOOOOOO " + equipo2 + ", no pasa nada, sera la proxima" + "😔😔😔"
+      "GANOOOOOOOOO " +
+        Equipo2.nombre +
+        ", no pasa nada, sera la proxima" +
+        "😔😔😔"
     );
   }
   jugando = prompt("Quieres volver a jugar?(esc para salir)");
